@@ -78,9 +78,15 @@ void initStep(Step* step) {
 }
 void Parser::ProcessStep(StepId s) {
     // Script创建一个新的Step，标识为stepId; 设置当前Step为新创建的Step
-    step = new Step;
-    initStep(step);
-    script->stepTable[s] = step;
+    if (script->stepTable.count(s) == 0) {
+        step = new Step;
+        initStep(step);
+        script->stepTable[s] = step;
+    } else {
+        // 允许StepId重复，如果StepId在前面已经出现了，不覆盖前面的处理
+        step = script->stepTable[s];
+    }
+
     // 如果这是第一个Step，则设置当前Step为Script的mainStep
     if (script->stepTable.size() == 1)
         script->entry = s;
