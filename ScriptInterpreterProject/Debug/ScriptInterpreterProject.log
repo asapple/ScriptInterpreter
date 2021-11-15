@@ -1,0 +1,6 @@
+﻿  Parser.cpp
+  main.cpp
+E:\ScriptInterpreter\ScriptInterpreterProject\main.cpp(8,27): warning C4018: “<”: 有符号/无符号不匹配
+E:\ScriptInterpreter\ScriptInterpreterProject\main.cpp(24,23): warning C4018: “<”: 有符号/无符号不匹配
+  正在生成代码...
+  ScriptInterpreterProject.vcxproj -> E:\ScriptInterpreter\ScriptInterpreterProject\Debug\ScriptInterpreterProject.exe
