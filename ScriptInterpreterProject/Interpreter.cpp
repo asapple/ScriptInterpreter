@@ -6,7 +6,7 @@ VOID WINAPI interpreter(PTP_CALLBACK_INSTANCE instance, PVOID param) {
     Step* curStep = script->stepTable[curStepId];
     while (true) {
         // 执行Speak（输出到标准输出）
-        if (curStep->speak != NULL)
+        if (curStep->speak != nullptr)
             for (int i = 0; i < curStep->speak->size(); i++) {
                 // 变量
                 if (curStep->speak->at(i)[0] == '$')

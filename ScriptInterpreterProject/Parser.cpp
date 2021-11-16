@@ -69,7 +69,7 @@ void Parser::ProcessTokens(vector<string> tokenList) {
     }
 }
 void initStep(Step* step) {
-    step->speak = NULL;
+    step->speak = nullptr;
     step->listenTime.beginTimer = 0;
     step->listenTime.endTimer = 0;
     step->silense = "";
