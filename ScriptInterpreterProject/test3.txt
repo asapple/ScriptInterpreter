@@ -3,7 +3,7 @@ Step welcome
 Speak $name  您好，请问有什么可以帮您?
 Listen 10 10
 Branch 投诉 complainProc
-Branch 账单 billProc
+branch 账单 billProc
 Branch 充值 refillProc
 Silence silenceProc
 Default defaultProc

@@ -1,7 +1,7 @@
 # 测试语法树生成测试one：符合语法规则的无逻辑冲突的语音脚本
 Step welcome
 Speak $name  您好，请问有什么可以帮您?
-Listen 10 10
+Listen 5 20
 Branch 投诉 complainProc
 Branch 账单 billProc
 Branch 充值 refillProc
@@ -10,11 +10,7 @@ Default defaultProc
 
 Step complainProc
 Speak 您的意见是我们改进工作的动力，请问您还有什么补充?
-Listen 10 10
-Default thanks
-
-Step thanks
-Speak 感谢您的来电！
+Listen 5, 50
 Exit
 
 Step billProc
@@ -23,19 +19,16 @@ Exit
 
 Step refillProc
 Speak 请输出您的充值金额：
-Listen 10 10
 Default refillConfirmProc
 
 Step refillConfirmProc
 Speak 您的充值金额是 $refillAmount ，请确认（yes/on）
-Listen 10 10
 Branch yes refillThanks
-Silence silenceProc
 Default refillProc
 
 Step silenceProc
 Speak 听不清，请您大声一点可以吗?
-Listen 10 10
+Listen 5 20
 Branch 投诉 complainProc
 Branch 账单 billProc
 Branch 充值 refillProc
@@ -44,7 +37,7 @@ Default defaultProc
 
 Step defaultProc
 Speak 没有明白您的意思，请您再说一次可以吗？
-Listen 10 10
+Listen 5 20
 Branch 投诉 complainProc
 Branch 账单 billProc
 Branch 充值 refillProc
@@ -52,5 +45,5 @@ Silence silenceProc
 Default defaultProc
 
 Step refillThanks
-Speak 已成功为您充值 $refillAmount ，感谢您的来电！(连接已断开)
+Speak 已成功为您充值 $refillAmount ，感谢您的来电！
 Exit

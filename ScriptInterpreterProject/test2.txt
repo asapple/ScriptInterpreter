@@ -1,0 +1,63 @@
+# 测试语法树生成测试two：
+# 测试几种语法规则
+# 1.一个Step可以分多个模块定义
+# 2.如果后面的语句与前面的语句冲突，则后面的语句会覆盖前面的语句
+# 3.Listen、Branch语句只会处理紧随其后的两个Token
+# 4.Silence、Default语句只会处理紧随其后的一个Token
+Step welcome
+Speak $name  您好，请问有什么可以帮您?
+Listen 5 20
+Branch 投诉 refillProc
+Branch 账单 billProc
+Branch 充值 refillProc
+Silence silenceProc
+Default defaultProc
+
+Step welcome # 1.一个Step可以分多个模块定义
+Speak $name  欢迎致电智能语音客户，请问您需要什么服务？（投诉/账单/充值） # 2.如果后面的语句与前面的语句冲突，则后面的语句会覆盖前面的语句
+Listen 5 20
+Branch 投诉 complainProc # 2.如果后面的语句与前面的语句冲突，则后面的语句会覆盖前面的语句
+Branch 账单 billProc
+Branch 充值 refillProc
+Silence silenceProc
+Default defaultProc
+
+Step complainProc
+Speak 您的意见是我们改进工作的动力，请问您还有什么补充?
+Listen 5 50 100 20 -1 # 3.Listen、Branch语句只会处理紧随其后的两个Token
+Exit
+
+Step billProc
+Speak 您的本月账单是 + $amount + 元，感谢您的来电，再见
+Exit
+
+Step refillProc
+Speak 请输出您的充值金额：
+Default refillConfirmProc refill # 4.Silence、Default语句只会处理紧随其后的一个Token
+
+Step refillConfirmProc
+Speak 您的充值金额是 $refillAmount ，请确认（yes/on）
+Branch yes refillThanks
+Default refillProc
+
+Step silenceProc
+Speak 听不清，请您大声一点可以吗?
+Listen 5 20
+Branch 投诉 complainProc
+Branch 账单 billProc
+Branch 充值 refillProc
+Silence silenceProc
+Default defaultProc
+
+Step defaultProc
+Speak 没有明白您的意思，请您再说一次可以吗？
+Listen 5 20
+Branch 投诉 complainProc
+Branch 账单 billProc
+Branch 充值 refillProc
+Silence silenceProc
+Default defaultProc
+
+Step refillThanks
+Speak 已成功为您充值 $refillAmount ，感谢您的来电！
+Exit

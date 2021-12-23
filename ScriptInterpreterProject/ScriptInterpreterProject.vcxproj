@@ -85,13 +85,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,16 +140,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CMDInterface.cpp" />
     <ClCompile Include="Interpreter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="SQL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="ans1.txt" />
+    <Text Include="ans2.txt" />
+    <Text Include="help.txt" />
     <Text Include="ScriptFile.txt" />
+    <Text Include="test1.txt" />
+    <Text Include="test2.txt" />
+    <Text Include="test3.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CMDInterface.h" />
     <ClInclude Include="Interpreter.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="SQL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="风格.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

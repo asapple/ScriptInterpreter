@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="资源文件\test">
+      <UniqueIdentifier>{94eede37-59f8-4450-afad-74dc22ee08ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\ans">
+      <UniqueIdentifier>{7afc3994-eab6-4891-8041-71af25222c50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\testOutput">
+      <UniqueIdentifier>{35ea45f0-3fa2-46c2-ac9b-c269d00728c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,10 +33,34 @@
     <ClCompile Include="Interpreter.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CMDInterface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SQL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ScriptFile.txt">
       <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="test1.txt">
+      <Filter>资源文件\test</Filter>
+    </Text>
+    <Text Include="ans1.txt">
+      <Filter>资源文件\ans</Filter>
+    </Text>
+    <Text Include="test2.txt">
+      <Filter>资源文件\test</Filter>
+    </Text>
+    <Text Include="ans2.txt">
+      <Filter>资源文件\ans</Filter>
+    </Text>
+    <Text Include="help.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="test3.txt">
+      <Filter>资源文件\test</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -37,5 +70,16 @@
     <ClInclude Include="Interpreter.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CMDInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SQL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="风格.md">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

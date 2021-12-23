@@ -1,0 +1,52 @@
+Entry Step: welcome
+List of VarName: $name $amount $refillAmount
+HashTable:
+billProc{
+Expression:  您的本月账单是 $amount 元，感谢您的来电，再见
+isExit: 1
+}
+complainProc{
+Expression:  您的意见是我们改进工作的动力，请问您还有什么补充?
+Listen: 5 50
+isExit: 1
+}
+defaultProc{
+Expression:  没有明白您的意思，请您再说一次可以吗？
+Listen: 5 20
+充值 refillProc
+投诉 complainProc
+账单 billProc
+silense: silenceProc
+defaultStep: defaultProc
+}
+refillConfirmProc{
+Expression:  您的充值金额是 $refillAmount ，请确认（yes/on）
+yes refillThanks
+defaultStep: refillProc
+}
+refillProc{
+Expression:  请输出您的充值金额：
+defaultStep: refillConfirmProc
+}
+refillThanks{
+Expression:  已成功为您充值 $refillAmount ，感谢您的来电！
+isExit: 1
+}
+silenceProc{
+Expression:  听不清，请您大声一点可以吗?
+Listen: 5 20
+充值 refillProc
+投诉 complainProc
+账单 billProc
+silense: silenceProc
+defaultStep: defaultProc
+}
+welcome{
+Expression:  $name 您好，请问有什么可以帮您?
+Listen: 5 20
+充值 refillProc
+投诉 complainProc
+账单 billProc
+silense: silenceProc
+defaultStep: defaultProc
+}

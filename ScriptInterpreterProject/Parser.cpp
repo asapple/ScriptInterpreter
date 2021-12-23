@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include"CMDInterface.h"
 Script* Parser::ParseFile(char* filePath) {
     script = new Script;
     script->entry = "";
@@ -96,6 +97,14 @@ void Parser::ProcessSpeak(vector<string> tokenList) {
     // ProcessExpression(token[])得到Expression，将Speak以及对应的表达式存入当前的Step
     step->speak = ProcessExpression(tokenList);
 }
+// 查找队列中变量是否已经存在
+static bool varFind(vector<VarName>& var, string& token) {
+    for (int i = 0; i < var.size(); i++) {
+        if (var[i] == token)
+            return 1;
+    }
+    return 0;
+}
 Expression* Parser::ProcessExpression(vector<string> tokenList) {
     Expression* exp = new Expression;
     int len = tokenList.size();
@@ -105,13 +114,13 @@ Expression* Parser::ProcessExpression(vector<string> tokenList) {
             continue;
         exp->push_back(tokenList[i]);
         // 将变量名存入Script的List<VarName>中
-        if (tokenList[i][0] == '$')
+        if (tokenList[i][0] == '$' && !varFind(script->vars, tokenList[i]))
             script->vars.push_back(tokenList[i]);
     }
     return exp;
 }
 void Parser::ProcessListen(string startTimer, string stopTimer) {
-    // 
+    // 处理Listen板块
     startTimer.erase(startTimer.find_last_of(NUMBER) + 1);
     stopTimer.erase(stopTimer.find_last_of(NUMBER) + 1);
     step->listenTime.beginTimer = atoi(startTimer.c_str());
@@ -133,11 +142,14 @@ void Parser::ProcessDefault(string nextStepId) {
 void Parser::ProcessExit() {
     step->isExit = 1;
 }
+// 报错模块，方便脚本编写者Debug
 void Parser::ParseError(const string errorToken) {
-    cout << "詞法分析錯處;" << endl;
+    ofstream output;
+    output.open(outfilePath);
+    output << "詞法分析錯處;" << endl;
     if (curLineNum > 0)
-        cout << "當前所在行數為：第 " << curLineNum << " 行;" << endl;
+        output << "當前所在行數為：第 " << curLineNum << " 行;" << endl;
     if (errorToken != "")
-        cout << "當前分析的 Token為： " << errorToken << " 請檢查腳本代碼是否出錯;" << endl;
+        output << "當前分析的 Token為： " << errorToken << " 請檢查腳本代碼是否出錯;" << endl;
     exit(1);
 }
